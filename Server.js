@@ -1,11 +1,18 @@
+require("dotenv").config();
+// console.log('Environment Variables:', process.env);
+
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+
 const urlRoutes = require('./routes/url');
 const cors = require("cors")
 const bodyParser = require("body-parser")
+console.log('MongoDB URL:', process.env.MONGO_URL);
+
+
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/urlshortener', {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
