@@ -5,7 +5,7 @@ const shortid = require('shortid');
 const Url = require('../models/Url');
 
 // Base URL for generating short URLs
-const BASE_URL = 'http://localhost:5000/api/url';
+const BASE_URL = 'https://analyticsbackend-1.onrender.com/api/url';
 
 // Generate a unique URL code using shortid
 const generateUrlCode = () => shortid.generate();
