@@ -14,12 +14,13 @@ console.log('MongoDB URL:', process.env.MONGO_URL);
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 20000, // Increase server selection timeout
+    socketTimeoutMS: 45000, // Optional: increase socket timeout
 })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
-    
     app.use(cors());
     app.use(bodyParser.json());
     
@@ -27,5 +28,5 @@ mongoose.connect(process.env.MONGO_URL, {
 app.use('/api/url', urlRoutes);
 
 // Start the server
-const PORT = 5000;
+const PORT = 5004;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
