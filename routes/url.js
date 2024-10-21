@@ -4,7 +4,7 @@ const validUrl = require('valid-url');
 const shortid = require('shortid');
 const Url = require('../models/Url');
 
-const BASE_URL = 'https://analyticsbackend-1.onrender.com/api/url';
+const BASE_URL = 'https://analyticsbackend-1.onrender.com';
 
 const generateUrlCode = () => shortid.generate();
 
@@ -49,7 +49,9 @@ router.post('/shorten', async (req, res) => {
     try {
         // Save the new URL to the database
         await newUrl.save();
-        return res.json(newUrl);
+        return res.json({
+            shortUrl
+        });
     } catch (error) {
         console.error('Error saving URL:', error);
         return res.status(500).json({ error: 'Internal server error' });
